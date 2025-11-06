@@ -1,5 +1,5 @@
 """
-Script para crear usuario administrador inicial
+Script para crear usuario administrador inicial (modo automático para Render)
 """
 from werkzeug.security import generate_password_hash
 import psycopg2
@@ -9,20 +9,14 @@ from dotenv import load_dotenv
 load_dotenv()
 
 def create_admin():
-    """Crear usuario admin"""
-    username = input("Ingrese nombre de usuario admin: ")
-    password = input("Ingrese contraseña: ")
-    
-    if not username or not password:
-        print("Usuario y contraseña requeridos")
-        return
-    
+    username = os.getenv('ADMIN_USERNAME', 'admin')
+    password = os.getenv('ADMIN_PASSWORD', 'admin123')
+
     db_url = os.getenv('DATABASE_URL', 'postgresql://localhost:5432/illima_db')
     
     try:
         conn = psycopg2.connect(db_url)
         cursor = conn.cursor()
-        
         hashed_password = generate_password_hash(password)
         
         cursor.execute('''
@@ -32,7 +26,7 @@ def create_admin():
         ''', (username, hashed_password))
         
         conn.commit()
-        print(f"Usuario administrador '{username}' creado exitosamente")
+        print(f"✅ Usuario administrador '{username}' creado exitosamente")
         
         cursor.close()
         conn.close()
