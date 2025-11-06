@@ -1,0 +1,73 @@
+{
+  "categories": [
+    {
+      "name": "Bebidas Calientes",
+      "description": "Café, té y bebidas calientes"
+    },
+    {
+      "name": "Bebidas Frías",
+      "description": "Jugos, refrescos y bebidas frías"
+    },
+    {
+      "name": "Alimentos",
+      "description": "Comidas y snacks"
+    }
+  ],
+  "products": [
+    {
+      "name": "Café Latte",
+      "category": "Bebidas Calientes",
+      "description": "Café espresso con leche vaporizada",
+      "price": 45.0
+    },
+    {
+      "name": "Café Americano",
+      "category": "Bebidas Calientes",
+      "description": "Café espresso alargado",
+      "price": 35.0
+    },
+    {
+      "name": "Jugo Natural",
+      "category": "Bebidas Frías",
+      "description": "Jugo de naranja recién exprimido",
+      "price": 40.0
+    }
+  ],
+  "supplies": [
+    {
+      "name": "Café en grano",
+      "category": "Bebidas Calientes",
+      "unit": "kg",
+      "stock": 10,
+      "min_stock": 2
+    },
+    {
+      "name": "Leche",
+      "category": "Bebidas Calientes",
+      "unit": "L",
+      "stock": 20,
+      "min_stock": 5
+    },
+    {
+      "name": "Vasos desechables",
+      "category": "Bebidas Frías",
+      "unit": "pcs",
+      "stock": 500,
+      "min_stock": 100
+    }
+  ],
+  "discounts": [
+    {
+      "name": "Descuento 10%",
+      "description": "10% de descuento en todas las bebidas",
+      "discount_type": "percentage",
+      "discount_value": 10.0
+    },
+    {
+      "name": "Descuento Fijo $5",
+      "description": "$5 de descuento",
+      "discount_type": "fixed",
+      "discount_value": 5.0
+    }
+  ]
+}

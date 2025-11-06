@@ -1,0 +1,107 @@
+/* Tablet (768px and below) */
+@media (max-width: 768px) {
+  .nav-container {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .nav-menu {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .main-container {
+    padding: 0 1rem;
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)) !important;
+    gap: 1rem !important;
+  }
+
+  .login-card {
+    padding: 2rem;
+  }
+
+  .modal-content {
+    width: 95%;
+    margin: 30% auto;
+  }
+
+  .inventory-table {
+    font-size: 0.9rem;
+  }
+
+  .inventory-table th,
+  .inventory-table td {
+    padding: 0.75rem;
+  }
+}
+
+/* Mobile (480px and below) */
+@media (max-width: 480px) {
+  .logo {
+    font-size: 1.2rem;
+  }
+
+  .logo-img {
+    height: 30px;
+  }
+
+  .nav-menu {
+    gap: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .nav-user {
+    display: none;
+  }
+
+  .dashboard-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)) !important;
+    gap: 0.75rem !important;
+  }
+
+  .product-image {
+    height: 100px;
+  }
+
+  .category-section {
+    padding: 1rem;
+  }
+
+  .login-card {
+    padding: 1.5rem;
+  }
+
+  .login-logo {
+    height: 60px;
+  }
+
+  .btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .modal-content {
+    padding: 1.5rem;
+  }
+
+  .modal-buttons {
+    flex-direction: column;
+  }
+
+  .modal-buttons .btn {
+    width: 100%;
+  }
+
+  table {
+    font-size: 0.85rem;
+  }
+}

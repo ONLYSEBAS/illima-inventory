@@ -1,0 +1,33 @@
+services:
+  - type: web
+    name: illima-app
+    env: python
+    plan: free
+    buildCommand: "pip install -r requirements.txt && npm install && npm run build"
+    startCommand: "python app.py"
+    envVars:
+      - key: DATABASE_URL
+        scope: build
+        value: "${DATABASE_URL}"
+      - key: SECRET_KEY
+        scope: build
+        value: "${SECRET_KEY}"
+      - key: FLASK_ENV
+        scope: runtime
+        value: "production"
+    
+  - type: pserv
+    name: illima-postgres
+    dbName: illima_db
+    plan: free
+    ipAllowList: []
+
+envVarGroups:
+  - name: Illima Production
+    envVars:
+      - key: DATABASE_URL
+        value: ""
+      - key: SECRET_KEY
+        value: ""
+      - key: FLASK_ENV
+        value: "production"

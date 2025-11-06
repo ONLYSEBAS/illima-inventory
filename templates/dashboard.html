@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}Panel - Illima{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    <div class="dashboard-header">
+        <h1>Bienvenido, {{ session.username }}</h1>
+        <p>Selecciona un producto para registrar una venta</p>
+    </div>
+    
+    {% if low_supplies %}
+    <div class="alert alert-warning">
+        <strong>⚠️ Alerta de Stock Bajo:</strong>
+        <ul>
+            {% for supply in low_supplies %}
+            <li>{{ supply.name }}: {{ supply.stock }} {{ supply.unit }} (Mínimo: {{ supply.min_stock }})</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    
+    <div class="categories-container">
+        {% for category in categories %}
+        <div class="category-section">
+            <h2 class="category-title">{{ category.name }}</h2>
+            
+            {% if category.products and category.products[0].id %}
+            <div class="products-grid">
+                {% for product in category.products %}
+                {% if product.id %}
+                <div class="product-card" data-product-id="{{ product.id }}" onclick="selectProduct({{ product.id }})">
+                    {% if product.image_path %}
+                    <img src="{{ url_for('static', filename=product.image_path) }}" alt="{{ product.name }}" class="product-image">
+                    {% else %}
+                    <div class="product-placeholder">No imagen</div>
+                    {% endif %}
+                    <h3>{{ product.name }}</h3>
+                    <button class="btn btn-small">Seleccionar</button>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+            {% else %}
+            <p class="no-products">Sin productos en esta categoría</p>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Modal para detalles del producto -->
+<div id="productModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeProductModal()">&times;</span>
+        <h2 id="productTitle"></h2>
+        
+        <div class="form-group">
+            <label for="quantity">Cantidad:</label>
+            <input type="number" id="quantity" value="1" min="1">
+        </div>
+        
+        <div id="suppliesList"></div>
+        
+        <div class="modal-buttons">
+            <button class="btn btn-primary" onclick="confirmSale()">Registrar Venta</button>
+            <button class="btn btn-secondary" onclick="closeProductModal()">Cancelar</button>
+        </div>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}Gestionar Inventario - Illima{% endblock %}
+
+{% block content %}
+<div class="admin-container">
+    <h1>Gestionar Inventario</h1>
+    
+    <table class="inventory-table">
+        <thead>
+            <tr>
+                <th>Categoría</th>
+                <th>Insumo</th>
+                <th>Stock Actual</th>
+                <th>Unidad</th>
+                <th>Stock Mínimo</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for supply in supplies %}
+            <tr class="{% if supply.stock <= supply.min_stock %}low-stock{% endif %}">
+                <td>{{ supply.category }}</td>
+                <td>{{ supply.name }}</td>
+                <td>{{ supply.stock }}</td>
+                <td>{{ supply.unit }}</td>
+                <td>{{ supply.min_stock }}</td>
+                <td>
+                    <button class="btn btn-small" onclick="editSupply({{ supply.id }})">Editar</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Modal para editar insumo -->
+<div id="supplyModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeSupplyModal()">&times;</span>
+        <h2>Actualizar Inventario</h2>
+        
+        <div class="form-group">
+            <label for="newStock">Nuevo Stock:</label>
+            <input type="number" id="newStock" step="0.01" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="notes">Notas:</label>
+            <textarea id="notes"></textarea>
+        </div>
+        
+        <button class="btn btn-primary" onclick="saveSupply()">Guardar</button>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/inventory.js') }}"></script>
+{% endblock %}
