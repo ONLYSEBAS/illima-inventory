@@ -89,6 +89,7 @@ const ChartTooltip = RechartsPrimitive.Tooltip
 // ✅ fix: "payload" typed manually since TooltipProps no longer exposes it
 interface FixedTooltipProps extends TooltipProps<number, string> {
   payload?: any
+  label?: string | number
 }
 
 function ChartTooltipContent({
