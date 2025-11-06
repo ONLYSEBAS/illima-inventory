@@ -224,8 +224,13 @@ function ChartLegendContent({
 }: {
   className?: string
   hideIcon?: boolean
-  payload?: RechartsPrimitive.LegendProps['payload']
-  verticalAlign?: RechartsPrimitive.LegendProps['verticalAlign']
+  // Definimos manualmente el tipo de payload
+  payload?: Array<{
+    value: string
+    color?: string
+    dataKey?: string
+  }>
+  verticalAlign?: 'top' | 'bottom' | 'middle'
   nameKey?: string
 }) {
   const { config } = useChart()
